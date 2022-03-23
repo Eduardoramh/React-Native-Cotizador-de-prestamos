@@ -1,29 +1,43 @@
-import React from "react";
-import { StyleSheet, View, Text, SafeAreaView, StatusBar, TextInput } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, View, Text, SafeAreaView, StatusBar, Button } from "react-native";
 import Form from "./src/components/Form";
 import colors from "./src/utils/colors";
-import RNPickerSelect from 'react-native-picker-select';
 
 
 export default function App() {
+  const [capital, setCapital] = useState(null);
+  const [interest, setInterest] = useState(null);
+  const [months, setMonths] = useState(null);
+
+  const onSubmit = () => {
+    console.log("capital ->", capital)
+    console.log("interes ->", interest)
+    console.log("moths ->", months)
+  }
+
   return (
     <>
       <StatusBar barStyle="light-content" />
       <SafeAreaView style={styles.SafeArea}>
-        <View style={styles.fondo}>
+        <View style={styles.background} />
+
         <Text style={styles.titleApp}>Cotizador de Prestamos</Text>
-        </View>
-        <Form />
+        <Form
+          setCapital={setCapital}
+          setInterest={setInterest}
+          setMonths={setMonths}
+        />
 
       </SafeAreaView>
 
-      {/* <View>
+      <View>
         <Text>Resultado</Text>
       </View>
 
       <View>
+        <Button title="Enviar" onPress={onSubmit}/>
         <Text>Footer</Text>
-      </View> */}
+      </View>
 
 
 
@@ -33,27 +47,24 @@ export default function App() {
 
 const styles = StyleSheet.create({
   SafeArea: {
-    // backgroundColor: colors.PRIMARY_COLOR,
-    // height: 200,
-    // borderBottomLeftRadius: 30,
-    // borderBottomRightRadius: 30,
-    // alignItems: "center",
-    height: 1000,
-    
+    height: 290,
+    alignItems: "center",
   },
 
   titleApp: {
     fontSize: 25,
     fontWeight: "bold",
     color: "#fff",
-    marginTop: 15,
+    marginTop: 35,
   },
 
-  fondo:{
+  background: {
     backgroundColor: colors.PRIMARY_COLOR,
     height: 200,
+    width: "100%",
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
-    alignItems: "center",
+    position: "absolute",
+    zIndex: -1,
   }
 });

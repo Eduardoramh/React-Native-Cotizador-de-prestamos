@@ -3,7 +3,8 @@ import { StyleSheet, TextInput, View } from "react-native";
 import colors from "../utils/colors";
 import RNPickerSelect from 'react-native-picker-select';
 
-export default function Form() {
+export default function Form(props) {
+    const {setCapital, setInterest, setMonths} = props;
     return (
         <View style={styles.viewForm}>
 
@@ -13,25 +14,28 @@ export default function Form() {
                     placeholderTextColor="#000"
                     keyboardType="numeric"
                     style={styles.input}
+                    onChange={(e) => setCapital(e.nativeEvent.text)}
                 />
                 <TextInput
                     placeholder="Interes %"
                     placeholderTextColor="#000"
                     keyboardType="numeric"
                     style={[styles.input, styles.inputPercentage]}
+                    onChange={(e) => setInterest(e.nativeEvent.text)}
                 />
 
             </View>
 
             <RNPickerSelect
                 style={picketSelectStyles}
-                onValueChange={(value) => console.log(value)}
+                onValueChange={(value) => setMonths(value)}
                 items={[
                     { label: '3 meses', value: 3 },
                     { label: '6 meses', value: 6 },
                     { label: '12 meses', value: 12 },
                     { label: '24 meses', value: 24 },
                 ]}
+                
             />
 
         </View>
@@ -41,16 +45,13 @@ export default function Form() {
 const styles = StyleSheet.create({
     viewForm: {
         position: "absolute",
-        marginTop: 90,
-        // bottom: 1,
+        bottom: 0,
         width: "85%",
         paddingHorizontal: 50,
         backgroundColor: colors.PRIMARY_COLOR_DARK,
         borderRadius: 30,
         height: 180,
         justifyContent: "center",
-        marginLeft: 30,
-        marginRight: 30,
     },
     viewInputs: {
         flexDirection: "row",
@@ -86,7 +87,7 @@ const picketSelectStyles = StyleSheet.create({
         color: "black",
         paddingRight: 30,
         backgroundColor: "#fff",
-        // marginLeft: -5,
-        // marginRight: -5,
+        marginLeft: -5,
+        marginRight: -5,
     }
 })
