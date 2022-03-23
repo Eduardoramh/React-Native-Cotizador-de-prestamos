@@ -24,11 +24,13 @@ export default function Form() {
             </View>
 
             <RNPickerSelect
+                style={picketSelectStyles}
                 onValueChange={(value) => console.log(value)}
                 items={[
-                    { label: 'Football', value: 'football' },
-                    { label: 'Baseball', value: 'baseball' },
-                    { label: 'Hockey', value: 'hockey' },
+                    { label: '3 meses', value: 3 },
+                    { label: '6 meses', value: 6 },
+                    { label: '12 meses', value: 12 },
+                    { label: '24 meses', value: 24 },
                 ]}
             />
 
@@ -72,3 +74,19 @@ const styles = StyleSheet.create({
         marginLeft: 5,
     },
 });
+
+const picketSelectStyles = StyleSheet.create({
+    inputAndroid:{
+        fontSize: 16,
+        paddingVertical: 8,
+        paddingHorizontal: 10,
+        borderWidth: 0.5,
+        borderColor: "grey",
+        borderRadius: 8,
+        color: "black",
+        paddingRight: 30,
+        backgroundColor: "#fff",
+        // marginLeft: -5,
+        // marginRight: -5,
+    }
+})
