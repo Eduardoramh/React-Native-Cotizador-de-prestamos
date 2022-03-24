@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, View, Text, SafeAreaView, StatusBar, Button } from "react-native";
 import Form from "./src/components/Form";
 import colors from "./src/utils/colors";
+import Footer from "./src/components/Footer";
 
 
 export default function App() {
@@ -9,7 +10,7 @@ export default function App() {
   const [interest, setInterest] = useState(null);
   const [months, setMonths] = useState(null);
 
-  const onSubmit = () => {
+  const calculate = () => {
     console.log("capital ->", capital)
     console.log("interes ->", interest)
     console.log("moths ->", months)
@@ -34,10 +35,7 @@ export default function App() {
         <Text>Resultado</Text>
       </View>
 
-      <View>
-        <Button title="Enviar" onPress={onSubmit}/>
-        <Text>Footer</Text>
-      </View>
+      <Footer calculate={calculate}/>
 
 
 
