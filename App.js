@@ -9,11 +9,24 @@ export default function App() {
   const [capital, setCapital] = useState(null);
   const [interest, setInterest] = useState(null);
   const [months, setMonths] = useState(null);
+  const [total, setTotal] = useState(null);
+  console.log(total);
 
   const calculate = () => {
-    console.log("capital ->", capital)
-    console.log("interes ->", interest)
-    console.log("moths ->", months)
+    if (!capital) {
+      console.log("Añade la cantidad que quieres solicitar");
+    } else if (!interest) {
+      console.log("Añade el interes del prestamo");
+    } else if (!months) {
+      console.log("Selecciona los meses a pagar");
+    } else {
+      const i = interest / 100;
+      const fee = capital / ((1 - Math.pow(i + 1, - months)) / i);
+      setTotal({
+        monthlyFee: fee.toFixed(2).replace(".",","),
+        totalPayable: (fee * months).toFixed(2).replace(".",",") ,
+      })
+    }
   }
 
   return (
@@ -35,7 +48,7 @@ export default function App() {
         <Text>Resultado</Text>
       </View>
 
-      <Footer calculate={calculate}/>
+      <Footer calculate={calculate} />
 
 
 
